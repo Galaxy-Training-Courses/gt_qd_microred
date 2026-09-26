@@ -1,0 +1,7 @@
+$kind: http-request
+name: Listar usuarios con filtros
+url: "{{communityUrl}}/api/users?neighborhood=Chorrillos"
+method: GET
+queryParams:
+  neighborhood: Chorrillos
+order: 2920

@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{communityUrl}}/api/objects/201"
+method: PATCH
+body:
+  type: json
+  content: "{\r
+
+    \    \"status\": \"UNAVAILABLE\"\r
+
+    }"
+order: 5000

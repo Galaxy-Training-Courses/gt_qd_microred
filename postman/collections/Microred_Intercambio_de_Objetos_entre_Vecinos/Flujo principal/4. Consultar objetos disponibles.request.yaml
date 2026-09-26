@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{communityUrl}}/api/objects?status=AVAILABLE&size=100"
+method: GET
+queryParams:
+  status: AVAILABLE
+  size: "100"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('200 OK', () => pm.response.to.have.status(200));
+      const body = pm.response.json();
+      const objectId = parseInt(pm.collectionVariables.get('objectId'), 10);
+      pm.test('el objeto recien creado aparece', () => {
+        pm.expect(body.content.some(o => o.id === objectId)).to.be.true;
+      });
+order: 4114330066842197

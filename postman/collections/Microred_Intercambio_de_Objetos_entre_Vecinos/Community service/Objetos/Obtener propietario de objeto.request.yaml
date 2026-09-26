@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{communityUrl}}/api/objects/151/owner"
+method: GET
+order: 7000

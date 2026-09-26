@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{communityUrl}}/api/users/101"
+method: GET
+order: 1000

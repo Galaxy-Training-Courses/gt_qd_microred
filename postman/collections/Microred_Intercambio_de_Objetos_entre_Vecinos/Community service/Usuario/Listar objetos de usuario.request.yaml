@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{communityUrl}}/api/users/151/objects?status=AVAILABLE"
+method: GET
+queryParams:
+  - key: status
+    value: AVAILABLE
+    disabled: false
+    description: ""
+order: 3180846765836001

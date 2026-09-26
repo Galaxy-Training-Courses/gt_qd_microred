@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{loanUrl}}/api/loans/{{loanId}}/approve"
+method: PATCH
+auth:
+  type: bearer
+  credentials:
+    token: "{{vault:jwtToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('200 OK', () => pm.response.to.have.status(200));
+      const body = pm.response.json();
+      pm.test('status APPROVED', () => pm.expect(body.status).to.eql('APPROVED'));
+order: 4483320953914273

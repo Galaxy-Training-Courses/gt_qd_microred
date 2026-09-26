@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{communityUrl}}/api/users"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Postman Owner\",\r
+
+    \    \"email\": \"owner-{{$timestamp}}@microred.pe\",\r
+
+    \    \"neighborhood\": \"San Borja\"\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('201 Created', () => pm.response.to.have.status(201));
+      const body = pm.response.json();
+      pm.test('status ACTIVE', () => pm.expect(body.status).to.eql('ACTIVE'));
+      pm.collectionVariables.set('ownerId', body.id);
+order: 1790460300100

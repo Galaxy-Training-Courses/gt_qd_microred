@@ -1,0 +1,21 @@
+$kind: http-request
+url: "{{loanUrl}}/api/loans"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"requesterId":{{requesterId}},"requestedFrom":"2026-12-01","requestedUntil":"2026-12-05","reason":"Prueba
+    Newman","items":[{"objectId":{{objectId}},"notes":null}]}'
+auth:
+  type: bearer
+  credentials:
+    token: "{{vault:jwtToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('201 Created', () => pm.response.to.have.status(201));
+      const body = pm.response.json();
+      pm.test('status PENDING', () => pm.expect(body.status).to.eql('PENDING'));
+      pm.collectionVariables.set('loanId', body.id);
+order: 4361430028554460

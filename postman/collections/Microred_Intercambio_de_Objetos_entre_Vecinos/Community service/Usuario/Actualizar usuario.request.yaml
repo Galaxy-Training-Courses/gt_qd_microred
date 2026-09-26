@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{communityUrl}}/api/users/202"
+method: PATCH
+body:
+  type: json
+  content: "{\r
+
+    \    \"neighborhood\": \"Lima\",\r
+
+    \    \"status\": \"ACTIVE\"\r
+
+    }"
+order: 5000

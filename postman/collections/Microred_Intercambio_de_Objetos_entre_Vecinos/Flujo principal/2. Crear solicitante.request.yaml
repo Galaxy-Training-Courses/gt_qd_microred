@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{communityUrl}}/api/users"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"name":"Postman
+    Requester","email":"requester-{{$timestamp}}@microred.pe","neighborhood":"Surco"}'
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('201 Created', () => pm.response.to.have.status(201));
+      const body = pm.response.json();
+      pm.collectionVariables.set('requesterId', body.id);
+order: 2816843675817414

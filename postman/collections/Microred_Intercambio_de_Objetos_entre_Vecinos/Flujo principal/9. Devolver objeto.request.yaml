@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{loanUrl}}/api/loans/{{loanId}}/return"
+method: PATCH
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('200 OK', () => pm.response.to.have.status(200));
+      const body = pm.response.json();
+      pm.test('status RETURNED', () => pm.expect(body.status).to.eql('RETURNED'));
+order: 4503248463324806

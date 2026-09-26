@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{communityUrl}}/api/objects/201"
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Pelotas\",\r
+
+    \    \"description\": \"Pelota de basketball\",\r
+
+    \    \"category\": \"ENTRETENIMIENTO\",\r
+
+    \    \"condition\": \"USED\"\r
+
+    }"
+order: 3711

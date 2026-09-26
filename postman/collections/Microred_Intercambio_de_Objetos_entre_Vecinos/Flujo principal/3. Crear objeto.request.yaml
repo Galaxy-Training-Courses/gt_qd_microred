@@ -1,0 +1,28 @@
+$kind: http-request
+url: "{{communityUrl}}/api/objects"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: "{\r
+
+    \    \"ownerId\": {{ownerId}},\r
+
+    \    \"name\": \"Taladro Postman\",\r
+
+    \    \"description\": \"Prueba Newman\",\r
+
+    \    \"category\": \"HERRAMIENTAS\",\r
+
+    \    \"condition\": \"GOOD\"\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('201 Created', () => pm.response.to.have.status(201));
+      const body = pm.response.json();
+      pm.test('status AVAILABLE', () => pm.expect(body.status).to.eql('AVAILABLE'));
+      pm.collectionVariables.set('objectId', body.id);
+order: 3582022847201135

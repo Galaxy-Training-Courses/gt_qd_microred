@@ -1,0 +1,6 @@
+name: Local
+values:
+  - key: communityUrl
+    value: 'http://localhost:8081'
+  - key: loanUrl
+    value: 'http://localhost:8082'

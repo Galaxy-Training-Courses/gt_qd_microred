@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{communityUrl}}/api/objects"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"ownerId\": 151,\r
+
+    \    \"name\": \"Pelota\",\r
+
+    \    \"description\": \"Pelota de basketball\",\r
+
+    \    \"category\": \"ENTRETENIMIENTO\",\r
+
+    \    \"condition\": \"USED\"\r
+
+    }"
+order: 2071

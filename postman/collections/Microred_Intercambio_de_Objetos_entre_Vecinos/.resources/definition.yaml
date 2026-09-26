@@ -1,0 +1,11 @@
+$kind: collection
+description: "Flujo de aceptacion de 10 pasos. Variables de colección con default localhost:8081/8082. Los emails usan {{$timestamp}} para que la coleccion sea re-ejecutable sin chocar con datos de una corrida anterior. 'Crear solicitud' y 'Aprobar solicitud' llevan Authorization: Bearer {{jwtToken}} - jwtToken es un token de demostracion (10 años de vigencia, firmado con la clave de prueba de loan-service, nunca la de producción), no una credencial real."
+variables:
+  ownerId: ""
+  requesterId: ""
+  objectId: ""
+  loanId: ""
+auth:
+  - id: c7aa68fb-9b8d-41f4-88a8-f6327525c028
+    type: noauth
+    name: No Auth
