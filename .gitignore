@@ -1,0 +1,47 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Quarkus
+.quarkus/
+*-runner
+*-runner.jar
+
+# Java
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+hs_err_pid*
+replay_pid*
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+.factorypath
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Variables de entorno y secretos (§14 del enunciado: nunca credenciales en Git)
+.env
+.env.*
+!.env.example
+
+# Docker / Compose
+docker-compose.override.yml
+
+# Kubernetes: kubeconfigs locales, nunca secretos reales versionados
+*.kubeconfig
+
+# Node (Newman)
+node_modules/
