@@ -17,7 +17,7 @@
     <modules>
         <module>community-service</module>
         <module>loan-service</module>
-<!--        <module>notification-consumer</module>-->
+        <module>notification-consumer</module>
     </modules>
 
     <properties>
