@@ -2,22 +2,16 @@
 # - Dos PostgreSQL (una base lógica por servicio)
 # - Redpanda
 # - Tres servicios Quarkus, construidos desde sus src/main/docker/Dockerfile.jvm
-#
-# Antes de "docker compose build": mvn clean package (deja target/quarkus-app/ listo en cada módulo).
-#
-# El servicio `postgres` de F2 se renombra aquí a `postgres-community` (mismo puerto/DB/usuario/password:
-# ningún uso previo desde el host se rompe) y se agrega su par `postgres-loan`.
 services:
   postgres-community:
     image: postgres:17
     environment:
       POSTGRES_DB: community_db
-      POSTGRES_USER: community
-      POSTGRES_PASSWORD: community
+      POSTGRES_USER: ${POSTGRES_COMMUNITY_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_COMMUNITY_PASSWORD}
     ports:
-      # 5432 ya lo ocupa un PostgreSQL 16 nativo de esta máquina (systemd,
-      # ajeno al proyecto) - hallazgo en vivo al levantar el stack por
-      # primera vez. Se remapea a 5434 en el host; el puerto interno de
+      # Se remapea a 5434 en el host para no entrar en conflicto
+      # con el PostgreSQL 16 nativo; el puerto interno de
       # Compose (5432) no cambia.
       - "5434:5432"
     volumes:
@@ -32,8 +26,8 @@ services:
     image: postgres:17
     environment:
       POSTGRES_DB: loan_db
-      POSTGRES_USER: loan
-      POSTGRES_PASSWORD: loan
+      POSTGRES_USER: ${POSTGRES_LOAN_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_LOAN_PASSWORD}
     ports:
       - "5433:5432"
     volumes:
@@ -44,7 +38,7 @@ services:
       timeout: 5s
       retries: 10
 
-  # ADR-006: Redpanda como broker Kafka-compatible en Compose (Dev Services solo en %dev/%test).
+  # Redpanda como broker Kafka-compatible en Compose (Dev Services solo en %dev/%test).
   # Un solo nodo, sin listener externo: nada fuera de esta red necesita hablarle directo.
   redpanda:
     image: redpandadata/redpanda:v26.2.3
@@ -72,8 +66,8 @@ services:
       - "8081:8081"
     environment:
       DATABASE_URL: jdbc:postgresql://postgres-community:5432/community_db
-      DATABASE_USER: community
-      DATABASE_PASSWORD: community
+      DATABASE_USER: ${POSTGRES_COMMUNITY_USER}
+      DATABASE_PASSWORD: ${POSTGRES_COMMUNITY_PASSWORD}
     depends_on:
       postgres-community:
         condition: service_healthy
@@ -93,8 +87,8 @@ services:
       - "8082:8082"
     environment:
       DATABASE_URL: jdbc:postgresql://postgres-loan:5432/loan_db
-      DATABASE_USER: loan
-      DATABASE_PASSWORD: loan
+      DATABASE_USER: ${POSTGRES_LOAN_USER}
+      DATABASE_PASSWORD: ${POSTGRES_LOAN_PASSWORD}
       COMMUNITY_SERVICE_URL: http://community-service:8081
       KAFKA_BOOTSTRAP_SERVERS: redpanda:9092
     depends_on:
