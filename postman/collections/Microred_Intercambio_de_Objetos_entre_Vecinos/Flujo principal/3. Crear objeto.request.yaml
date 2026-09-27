@@ -9,9 +9,9 @@ body:
 
     \    \"ownerId\": {{ownerId}},\r
 
-    \    \"name\": \"Taladro Postman\",\r
+    \    \"name\": \"Taladro\",\r
 
-    \    \"description\": \"Prueba Newman\",\r
+    \    \"description\": \"Taladro grande\",\r
 
     \    \"category\": \"HERRAMIENTAS\",\r
 

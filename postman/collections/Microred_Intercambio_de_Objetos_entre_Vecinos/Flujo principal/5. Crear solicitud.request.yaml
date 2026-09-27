@@ -4,9 +4,30 @@ method: POST
 headers:
   Content-Type: application/json
 body:
-  type: text
-  content: '{"requesterId":{{requesterId}},"requestedFrom":"2026-12-01","requestedUntil":"2026-12-05","reason":"Prueba
-    Newman","items":[{"objectId":{{objectId}},"notes":null}]}'
+  type: json
+  content: "{\r
+
+    \    \"requesterId\": {{requesterId}},\r
+
+    \    \"requestedFrom\": \"2026-12-01\",\r
+
+    \    \"requestedUntil\": \"2026-12-05\",\r
+
+    \    \"reason\": \"Prueba Postman\",\r
+
+    \    \"items\": [\r
+
+    \        {\r
+
+    \            \"objectId\": {{objectId}},\r
+
+    \            \"notes\": null\r
+
+    \        }\r
+
+    \    ]\r
+
+    }"
 auth:
   type: bearer
   credentials:

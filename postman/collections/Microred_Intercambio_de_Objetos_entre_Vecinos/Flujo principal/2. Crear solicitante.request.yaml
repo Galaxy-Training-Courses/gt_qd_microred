@@ -4,9 +4,16 @@ method: POST
 headers:
   Content-Type: application/json
 body:
-  type: text
-  content: '{"name":"Postman
-    Requester","email":"requester-{{$timestamp}}@microred.pe","neighborhood":"Surco"}'
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Edward Requester\",\r
+
+    \    \"email\": \"requester-{{$timestamp}}@microred.pe\",\r
+
+    \    \"neighborhood\": \"Surco\"\r
+
+    }"
 scripts:
   - type: afterResponse
     code: |-

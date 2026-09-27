@@ -7,7 +7,7 @@ body:
   type: json
   content: "{\r
 
-    \    \"name\": \"Postman Owner\",\r
+    \    \"name\": \"Edward Owner\",\r
 
     \    \"email\": \"owner-{{$timestamp}}@microred.pe\",\r
 
